@@ -4,9 +4,12 @@
   See the README file for more details.
  
  Sensore di temperatura LM35 su pin A1,A3
+ Sensore di Luce  pin 
  Sensore NC su    pin 9
  Rele cancello    pin 2
  Relé cancelletti pin 3
+ Relé luce ingresso pin ?
+ 
  
  created 22 Aprile 2015
  modified X Marzo 2016
