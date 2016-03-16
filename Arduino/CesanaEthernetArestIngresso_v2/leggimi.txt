@@ -24,3 +24,5 @@ https://github.com/combs/Arduino-Watchdog-Handler
 http://fabrizio.zellini.org/come-ritardare-uno-switch
 
 https://github.com/combs/Arduino-Watchdog-Handler
+
+Leggere documentazione per pin disponibili con ethernet shield
