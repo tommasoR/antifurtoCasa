@@ -1,6 +1,9 @@
 /* 
   This a simple example of the aREST Library for Arduino (Uno/Mega/Due/Teensy)
-  using the Ethernet library (for example to be used with the Ethernet shield). 
+  using the Ethernet library (for example to be used with the Ethernet shield).
+  Arduino communicates with both the W5100 and SD card using the SPI bus (through the ICSP header). This is on digital pins 10, 11, 12, and 13 on the Uno and pins 50, 51, and 52 on the Mega. On both boards, pin 10 is used to select the W5100 and pin 4 for the SD card. These pins cannot be used for general I/O. On the Mega, the hardware SS pin, 53, is not used to select either the W5100 or the SD card, but it must be kept as an output or the SPI interface won’t work.
+  So on the Arduino MEGA, pin 53 is not used as the SPI slave select (SS) pin for either the Ethernet chip or SD card, but must be left as an output for the SPI bus to work.
+ 
   See the README file for more details.
  
  Sensore di temperatura LM35 su pin A1,A3
@@ -22,8 +25,9 @@
 #include "aREST.h"
 #include <avr/wdt.h>
 
-#define PIN_RELE_CANCELLO    2//led verde
-#define PIN_RELE_CANCELLETTI 3//led rosso
+#define PIN_RELE_CANCELLO    2 //Rele1
+#define PIN_RELE_CANCELLETTI 3 //Rele2
+#define PIN_RELE_LUCE_INGRESSO 8 //TODO
 
 /* contatto magnetico normalmente chiuso con resistenza di pull-up interna 
 porta di ingresso
@@ -46,6 +50,9 @@ float temperatureC_su_scheda = 0.0;
 // Variables to be exposed to the API
 int LM35sensor = 0;
 int LM35sensor_su_scheda = 0;
+
+//Sensore Luce con fotoresistenza
+#define fotoPin A3 //TODO
   
 //Variabili
 unsigned long currentMillis = 0L;
@@ -88,6 +95,8 @@ void setup(void)
   digitalWrite(PIN_RELE_CANCELLO, LOW);
   pinMode(PIN_RELE_CANCELLETTI, OUTPUT);         // Relay 2
   digitalWrite(PIN_RELE_CANCELLETTI, LOW);
+  pinMode(PIN_RELE_LUCE_INGRESSO, OUTPUT);         // Relay 3
+  digitalWrite(PIN_RELE_LUCE_INGRESSO, LOW);
   
   // Init variables and expose them to REST API
   rest.variable("LM35sensor",&LM35sensor);

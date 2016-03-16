@@ -27,4 +27,10 @@ https://github.com/combs/Arduino-Watchdog-Handler
 
 
 
-Leggere documentazione per pin disponibili con ethernet shield
+servizi arest
+https://github.com/marcoschwartz/aREST
+verificare se con nuove librerie funziona corretamente
+
+
+servizi MQTT
+https://github.com/knolleary/pubsubclient
